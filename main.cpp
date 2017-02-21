@@ -40,7 +40,7 @@ size_t stack::size()
     return sizeVal;
 }
 
-void stack::push(double value)
+void stack::push(int value)
 {
     printf("%lld", capacityVal);
     if (checkCap(value))
@@ -74,3 +74,5 @@ int stack::checkCap(int value)
     }
     else return 0;
 }
+
+//kjbkjhjkhjk

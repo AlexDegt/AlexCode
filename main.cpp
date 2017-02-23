@@ -8,11 +8,12 @@ class stack
 {
     public:
         stack();
-        stack(size_t capacit);
+        explicit stack(size_t capacit);
         void push(double value);
         double pop();
         void empty();
         size_t  size();
+        void dump();
     private:
         double * data;
         size_t sizeVal;
@@ -23,10 +24,12 @@ class stack
 
 int main()
 {
-    stack s(0);
+    stack s(10);
+    //stack s1 = 7;
     s.push(1);
     s.push(2);
     cout << s.pop() << endl;
+    s.dump();
     system("PAUSE");
     return 0;
 }
@@ -48,6 +51,11 @@ size_t stack::size()
     {
         return sizeVal;
     }
+    else
+    {
+        cout << "error at the stage of using 'size()'" << endl;
+        dump();
+    }
 }
 
 void stack::push(double value)
@@ -59,7 +67,10 @@ void stack::push(double value)
         data[sizeVal++] = value;
     }
     else
-        cout << "ERROR" << endl;
+        {
+            cout << "error at the stage of using 'push()'" << endl;
+            dump();
+        }
 }
 
 double stack::pop()
@@ -68,6 +79,11 @@ double stack::pop()
     {
         return data[sizeVal-1];
         sizeVal--;
+    }
+    else
+    {
+        cout << "error at the stage of using pop()" << endl;
+        dump();
     }
 }
 
@@ -79,4 +95,18 @@ void stack::empty()
             data[i] = 0;
         sizeVal = 0;
     }
+    {
+        cout << "error at the stage of using empty()" << endl;
+        dump();
+    }
+}
+
+void stack::dump()
+{
+    cout << endl;
+    for (size_t i = 0; i < sizeVal; i++)
+        cout << i << ": " << data[i] << endl;
+    cout << endl;
+    cout << "size: " << sizeVal << endl;
+    cout << "capacity: " << capacityVal << endl;
 }
